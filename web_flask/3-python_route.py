@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Flask framework
 """
+
 from flask import Flask
 
 app = Flask(__name__)
@@ -23,6 +24,13 @@ def HBNB():
 def text(text):
     """return text given"""
     return "C {}".format(text.replace("_", " "))
+
+
+@app.route('/python/', defaults={'text': 'is_cool'})
+@app.route('/python/<text>', strict_slashes=False)
+def display(text):
+    """display “Python ”, followed by the value of the text"""
+    return "Python {}".format(text.replace("_", " "))
 
 
 if __name__ == "__main__":
